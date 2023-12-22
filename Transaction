@@ -1,0 +1,19 @@
+public async Task AddMultipleCustomersAsync(List<Customer> customers)
+{
+    using var transaction = await _context.Database.BeginTransactionAsync();
+
+    try
+    {
+        foreach (var customer in customers)
+        {
+            _context.Customers.Add(customer);
+        }
+        await _context.SaveChangesAsync();
+        await transaction.CommitAsync();
+    }
+    catch
+    {
+        await transaction.RollbackAsync();
+        throw;
+    }
+}
