@@ -1,0 +1,10 @@
+public class SupportTicket
+{
+    public int Id { get; set; }
+    public int CustomerId { get; set; }
+    public string IssueDescription { get; set; }
+    public Customer Customer { get; set; }
+    // related to a specific service
+    public int? ServiceId { get; set; }
+    public Service Service { get; set; }
+}
