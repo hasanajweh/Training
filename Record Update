@@ -1,0 +1,18 @@
+// update existing item
+public async Task UpdateCustomerAsync(Customer customer)
+{
+    _context.Customers.Update(customer);
+    await _context.SaveChangesAsync();
+}
+
+// partial update (modifying)
+public async Task UpdateCustomerEmailAsync(int id, string newEmail)
+{
+    var customer = await _context.Customers.FindAsync(id);
+    if (customer != null)
+    {
+        customer.Email = newEmail;
+        await _context.SaveChangesAsync();
+    }
+}
+
